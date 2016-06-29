@@ -22,7 +22,7 @@ module.exports = function(defaultCountryCode){
 	}
 
 	var getCountryCodeMiddleware = function(req, res, next) {
-		var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+		var ip = req.headers['x-forwarded-for'].split(',')[0] || req.connection.remoteAddress;
 		req.countryCode = getCountryCode(ip)
 		next();
 	}
